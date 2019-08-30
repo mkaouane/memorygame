@@ -12,7 +12,7 @@
 body {
   background-image: url("https://i.redd.it/n4a5lspwp6d21.jpg");
     background-size: cover;
-    margin: 0;
+    height: 100vh;
     
 }
 .page-title {
@@ -31,12 +31,20 @@ body {
   color:orange;
 }
 
+.game-info-container {
+  display: flex;
+  justify-content: space-around;
+}
 
+.game-info {
+  color: #FFBB89;
+  font-size: 4em;
+}
 .memory-game {
   
   width: 640px;
   height: 640px;
-  margin: auto;
+  margin:auto;
   display: flex;
   flex-wrap: wrap;
   perspective: 1000px;
@@ -44,7 +52,7 @@ body {
 
 .memory-card {
   position: relative;
-  top: 15%;
+  top: 7%;
   width: calc(25% - 10px);
   height: calc(33.333% - 10px);
   margin: 5px;

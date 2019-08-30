@@ -16,7 +16,7 @@ class AudioController {
   }
   
   startMusic() {
-     // this.bgMusic.play();
+     this.bgMusic.play();
   }
 
   soundflip() {
@@ -28,10 +28,36 @@ class AudioController {
   }
 }
 
+class SimplonBallz {
+  constructor(totalTime) {
+    this.totalTime = totalTime;
+        this.timeRemaining = totalTime;
+        this.timer = document.getElementById('time-remaining')
+        this.ticker = document.getElementById('flips');
+        this.audioController = new AudioController();
+    }
+    
+   startCountdown() {
+    return setInterval(() => {
+      this.timeRemaining--;
+      this.timer.innerText = this.timeRemaining;
+      if(this.timeRemaining === 0)
+          this.gameOver();
+  }, 1000);
+
+  }
+
+ 
+  
+
+}
+
 let audioController = new AudioController;
+let game = new SimplonBallz;
 
+
+game.startCountdown();
 audioController.startMusic();
-
 const cards = document.querySelectorAll('.memory-card');
 
 let hasFlippedCard = false;
