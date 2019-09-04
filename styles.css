@@ -3,6 +3,7 @@
   src: url("./font/Saiyan-Sans.ttf")
 }
 
+
 * {
   padding: 0;
   margin: 0;
@@ -34,6 +35,38 @@ body {
 .game-info-container {
   display: flex;
   justify-content: space-around;
+}
+
+.overlay-text {
+  display:none;
+  position: fixed;
+  top:0;
+  right:0;
+  bottom: 0;
+  left: 0;
+  font-family: "Saiyan-sans";
+  z-index: 100;
+  color: rgb(255, 238, 0);
+  text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;    
+
+}
+
+.overlay-text span {
+  color: red;
+}
+
+.overlay-text-small {
+  font-size: .3em;
+}
+
+.overlay-text.visible {
+  display:flex;
+  flex-direction: column;
+  animation: overlay-grow 500ms forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7em;
 }
 
 .game-info {
@@ -86,3 +119,4 @@ body {
 .front-face {
   transform: rotateY(180deg);
 }
+

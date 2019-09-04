@@ -2,9 +2,11 @@ class AudioController {
   constructor() {
       this.bgMusic = new Audio('audio/bgmusic.mp3');
       this.flipSound = new Audio('audio/flip.wav');
-      this.victorySound = new Audio ('audio/victory.mp3')
+      this.victorySound = new Audio ('audio/victory.mp3');
+      this.gameOverSound = new Audio ('audio/victory.mp3');
       this.matchedSound = new Audio('audio/matched.mp3');
       this.victorySound.volume = 0.1;
+      this.gameOverSound.volume = 0.1;
       this.matchedSound.volume= 0.1;
       this.bgMusic.volume = 0.2;
       this.bgMusic.loop = true;
@@ -14,10 +16,19 @@ class AudioController {
   soundVictory() {
     this.victorySound.play();
   }
+
+  
+  soundGameOver() {
+    this.gameOverSound.play();
+  }
   
   startMusic() {
      this.bgMusic.play();
   }
+
+  stopMusic() {
+    this.bgMusic.pause();
+}
 
   soundflip() {
     this.flipSound.play();
@@ -37,12 +48,20 @@ class SimplonBallz {
         this.audioController = new AudioController();
     }
     
+
+    gameOver() {
+      document.getElementById('game-over-text').classList.add('visible');
+      document.getElementById('game-over-text').addEventListener('click', function(){location.reload()});
+      this.audioController.soundGameOver();
+        
+    }
    startCountdown() {
-    return setInterval(() => {
+    let timer = setInterval(() => {
       this.timeRemaining--;
       this.timer.innerText = this.timeRemaining;
-      if(this.timeRemaining === 0)
-          this.gameOver();
+      if(this.timeRemaining === 0){
+          clearInterval(timer);
+          this.gameOver();}
   }, 1000);
 
   }
@@ -52,8 +71,9 @@ class SimplonBallz {
 
 }
 
+
 let audioController = new AudioController;
-let game = new SimplonBallz;
+let game = new SimplonBallz(100);
 
 
 game.startCountdown();
@@ -126,3 +146,4 @@ function resetBoard() {
 })();
 
 cards.forEach(card => card.addEventListener('click', flipCard));
+
